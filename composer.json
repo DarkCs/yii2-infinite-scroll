@@ -1,0 +1,29 @@
+{
+  "name": "darkcs/yii2-infinite-scroll",
+  "description": "Link pager with infinite scroll support.",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "infinite",
+    "scroll",
+    "endless",
+    "autopagerize",
+    "pager"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yuri Plaksunov",
+      "email": "darkcs2@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "darkcs\\infinitescroll\\": ""
+    }
+  }
+}
