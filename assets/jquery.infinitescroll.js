@@ -57,7 +57,6 @@
             $window.bind('scroll.' + name, scroll);
         },
         unbind: function () {
-            methods.stop();
             $window.unbind('.' + name);
         },
         hidePagination: function () {
