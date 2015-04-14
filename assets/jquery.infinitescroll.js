@@ -28,7 +28,7 @@
         var elemTop = elem.offset().top;
         var elemBottom = elemTop + elem.height();
 
-        return ((elemBottom - options.bufferPx <= docViewBottom));
+        return (elemBottom - options.bufferPx <= docViewBottom);
     }
 
     function scroll(e) {
@@ -71,12 +71,14 @@
             options.state.isPaused = false;
             methods.bind();
             methods.hidePagination();
+            object.trigger('infinitescroll:afterStart');
             return this;
         },
         stop: function () {
             options.state.isPaused = true;
             methods.unbind();
             methods.showPagination();
+            object.trigger('infinitescroll:afterStop');
             return this;
         },
         retrieve: function () {
@@ -100,6 +102,7 @@
                             object.find(options.pagination).html(html.find(options.pagination).html());
                             options.state.isLoadingNextPage = false;
                             methods.hideLoadingText();
+                            object.trigger('infinitescroll:afterRetrieve');
                         }
                     });
                 } else {

@@ -53,3 +53,19 @@ $('.list-view').infinitescroll('start');
 // disable
 $('.list-view').infinitescroll('stop');
 ```
+
+Events
+------
+```javascript
+$('.list-view').on('infinitescroll:afterRetrieve', function(){
+    console.log('infinitescroll:afterRetrieve');
+});
+
+$('.list-view').on('infinitescroll:afterStart', function(){
+    console.log('infinitescroll:afterStart');
+});
+
+$('.list-view').on('infinitescroll:afterStop', function(){
+    console.log('infinitescroll:afterStop');
+});
+```
