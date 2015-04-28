@@ -12,6 +12,7 @@ class InfiniteScrollPager extends LinkPager
     public $itemSelector = '.item';
     public $paginationSelector = '.pagination';
     public $nextSelector = '.pagination .next a:first';
+    public $wrapperSelector = '.list-view';
     public $bufferPx = 40;
     public $pjaxContainer = null;
     public $autoStart = true;
@@ -32,6 +33,7 @@ class InfiniteScrollPager extends LinkPager
                 'container' => $this->pjaxContainer,
             ],
             'bufferPx' => $this->bufferPx,
+            'wrapper' => $this->wrapperSelector,
         ];
 
         $this->pluginOptions = ArrayHelper::merge($default, $this->pluginOptions);
