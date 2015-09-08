@@ -15,7 +15,8 @@
         state: {
             isPaused: true,
             isLoadingNextPage: false
-        }
+        },
+        alwaysHidePagination: true
     };
     var options = {};
 
@@ -65,7 +66,9 @@
             return this;
         },
         showPagination: function () {
-            $(options.pagination).show();
+            if (!options.alwaysHidePagination) {
+                $(options.pagination).show();
+            }
             return this;
         },
         start: function () {
