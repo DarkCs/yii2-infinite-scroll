@@ -1,6 +1,6 @@
 <?php
 
-namespace darkcs\infinitescroll;
+namespace apexwire\infinitescroll;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -17,6 +17,7 @@ class InfiniteScrollPager extends LinkPager
     public $pjaxContainer = null;
     public $autoStart = true;
     public $alwaysHidePagination = true;
+    public $container = 'window';
 
     // опции jquery плагина напрямую
     public $pluginOptions = [];
@@ -36,6 +37,7 @@ class InfiniteScrollPager extends LinkPager
             'bufferPx' => $this->bufferPx,
             'wrapper' => $this->wrapperSelector,
             'alwaysHidePagination' => $this->alwaysHidePagination,
+            'container' => $this->container,
         ];
 
         $this->pluginOptions = ArrayHelper::merge($default, $this->pluginOptions);

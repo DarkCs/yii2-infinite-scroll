@@ -16,25 +16,42 @@
             isPaused: true,
             isLoadingNextPage: false
         },
-        alwaysHidePagination: true
+        alwaysHidePagination: true,
+        container: 'window'
     };
     var options = {};
 
     var object;
-    var $window = $(window);
+    var container;
 
-    function isScrolledToBottom(elem) {
-        var docViewTop = $window.scrollTop();
-        var docViewBottom = docViewTop + $window.height();
+    function isScrolledToBottom(elem, container) {
+        var containerViewTop = container.scrollTop();
+        var containerViewBottom = containerViewTop + container.height();
 
         var elemTop = elem.offset().top;
         var elemBottom = elemTop + elem.height();
 
-        return (elemBottom - options.bufferPx <= docViewBottom);
+        return (elemBottom - options.bufferPx <= containerViewBottom);
+    }
+
+    function isScrolledToBottomContainer(container) {
+        var containerViewTop = container.scrollTop() + container.height();
+        var height = 0;
+
+        container.children().each(function (indx, element) {
+            if ($(element).is(":visible")) {
+                height += $(element).height();
+            }
+        });
+
+        return (height <= containerViewTop);
     }
 
     function scroll(e) {
-        if (isScrolledToBottom(object)) {
+        if (
+            (options.container == "window" && isScrolledToBottom(object, container)) ||
+            (options.container == "container" && isScrolledToBottomContainer(object))
+        ) {
             methods.retrieve();
         }
     }
@@ -48,6 +65,10 @@
                 return this;
             } else {
                 object = this;
+                container = (options.container == "container")
+                    ? object
+                    : $(window);
+
                 if (!options.state.isPaused) {
                     methods.start();
                 }
@@ -56,10 +77,10 @@
 
         },
         bind: function () {
-            $window.bind('scroll.' + name, scroll);
+            container.bind('scroll.' + name, scroll);
         },
         unbind: function () {
-            $window.unbind('.' + name);
+            container.unbind('.' + name);
         },
         hidePagination: function () {
             $(options.pagination).hide();

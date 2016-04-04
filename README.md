@@ -6,18 +6,20 @@ Installation
 ------------
 
 ```
-php composer.phar require --prefer-dist "darkcs/yii2-infinite-scroll" "*"
+php composer.phar require --prefer-dist "apexwire/yii2-infinite-scroll" "*"
 ```
 
 Options
 -------
-##### $autoStart `true`;
+##### $autoStart `true`; - 
 ##### $containerSelector `.list-view`;
 ##### $itemSelector `.item`;
 ##### $paginationSelector `.pagination`;
 ##### $nextSelector `.pagination .next a:first`;
 ##### $bufferPx `40`;
 ##### $pjaxContainer `null`;
+##### $alwaysHidePagination = `true`;
+##### $container = `['window']`; `window` - loading content on main scrollbar approaching document bottom, `container` - loading content on container scrollbar approaching container bottom, 
 
 Usage example
 -------------
@@ -34,7 +36,7 @@ echo \yii\widgets\ListView::widget([
     'summary' => false,
     'layout' => '{items}<div class="pagination-wrap">{pager}</div>',
     'pager' => [
-        'class' => \darkcs\infinitescroll\InfiniteScrollPager::className(),
+        'class' => \apexwire\infinitescroll\InfiniteScrollPager::className(),
         'paginationSelector' => '.pagination-wrap',
         'pjaxContainer' => $pjax->id,
     ],
