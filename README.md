@@ -11,13 +11,15 @@ php composer.phar require --prefer-dist "darkcs/yii2-infinite-scroll" "*"
 
 Options
 -------
-##### $autoStart `true`;
+##### $autoStart `true`; - 
 ##### $containerSelector `.list-view`;
 ##### $itemSelector `.item`;
 ##### $paginationSelector `.pagination`;
 ##### $nextSelector `.pagination .next a:first`;
 ##### $bufferPx `40`;
 ##### $pjaxContainer `null`;
+##### $alwaysHidePagination = `true`;
+##### $container = `['window']`; `window` - loading content on main scrollbar approaching document bottom, `container` - loading content on main scrollbar approaching container bottom, 
 
 Usage example
 -------------

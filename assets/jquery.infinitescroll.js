@@ -16,31 +16,42 @@
             isPaused: true,
             isLoadingNextPage: false
         },
-        alwaysHidePagination: true
+        alwaysHidePagination: true,
+        container: 'window'
     };
     var options = {};
 
     var object;
-    var $window = $(window);
+    var container;
 
-    function isScrolledToBottom(elem, doc) {
-        var docViewTop = doc.scrollTop();
-        var docViewBottom = docViewTop + doc.height();
+    function isScrolledToBottom(elem, container) {
+        var containerViewTop = container.scrollTop();
+        var containerViewBottom = containerViewTop + container.height();
 
         var elemTop = elem.offset().top;
         var elemBottom = elemTop + elem.height();
 
-        return (elemBottom - options.bufferPx <= docViewBottom);
+        return (elemBottom - options.bufferPx <= containerViewBottom);
     }
 
-    function scrollWindow(e) {
-        if (isScrolledToBottom(object, $window)) {
-            methods.retrieve();
-        }
+    function isScrolledToBottomContainer(container) {
+        var containerViewTop = container.scrollTop() + container.height();
+        var height = 0;
+
+        container.children().each(function (indx, element) {
+            if ($(element).is(":visible")) {
+                height += $(element).height();
+            }
+        });
+
+        return (height <= containerViewTop);
     }
 
-    function scrollDocument(e) {
-        if (isScrolledToBottom(object.children(':first-child'), object)) {
+    function scroll(e) {
+        if (
+            (options.container == "window" && isScrolledToBottom(object, container)) ||
+            (options.container == "container" && isScrolledToBottomContainer(object))
+        ) {
             methods.retrieve();
         }
     }
@@ -54,6 +65,10 @@
                 return this;
             } else {
                 object = this;
+                container = (options.container == "container")
+                    ? object
+                    : $(window);
+
                 if (!options.state.isPaused) {
                     methods.start();
                 }
@@ -62,15 +77,10 @@
 
         },
         bind: function () {
-            if ($.inArray("window", options.doc) != -1) {
-                $window.bind('scroll.' + name, scrollWindow);
-            }
-            if ($.inArray("document", options.doc) != -1) {
-                object.bind('scroll.' + name, scrollDocument);
-            }
+            container.bind('scroll.' + name, scroll);
         },
         unbind: function () {
-            $window.unbind('.' + name);
+            container.unbind('.' + name);
         },
         hidePagination: function () {
             $(options.pagination).hide();
