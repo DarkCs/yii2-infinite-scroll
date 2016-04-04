@@ -23,9 +23,9 @@
     var object;
     var $window = $(window);
 
-    function isScrolledToBottom(elem) {
-        var docViewTop = $window.scrollTop();
-        var docViewBottom = docViewTop + $window.height();
+    function isScrolledToBottom(elem, doc) {
+        var docViewTop = doc.scrollTop();
+        var docViewBottom = docViewTop + doc.height();
 
         var elemTop = elem.offset().top;
         var elemBottom = elemTop + elem.height();
@@ -33,8 +33,14 @@
         return (elemBottom - options.bufferPx <= docViewBottom);
     }
 
-    function scroll(e) {
-        if (isScrolledToBottom(object)) {
+    function scrollWindow(e) {
+        if (isScrolledToBottom(object, $window)) {
+            methods.retrieve();
+        }
+    }
+
+    function scrollDocument(e) {
+        if (isScrolledToBottom(object.children(':first-child'), object)) {
             methods.retrieve();
         }
     }
@@ -56,7 +62,12 @@
 
         },
         bind: function () {
-            $window.bind('scroll.' + name, scroll);
+            if ($.inArray("window", options.doc) != -1) {
+                $window.bind('scroll.' + name, scrollWindow);
+            }
+            if ($.inArray("document", options.doc) != -1) {
+                object.bind('scroll.' + name, scrollDocument);
+            }
         },
         unbind: function () {
             $window.unbind('.' + name);

@@ -17,6 +17,7 @@ class InfiniteScrollPager extends LinkPager
     public $pjaxContainer = null;
     public $autoStart = true;
     public $alwaysHidePagination = true;
+    public $document = ['window'];
 
     // опции jquery плагина напрямую
     public $pluginOptions = [];
@@ -36,6 +37,7 @@ class InfiniteScrollPager extends LinkPager
             'bufferPx' => $this->bufferPx,
             'wrapper' => $this->wrapperSelector,
             'alwaysHidePagination' => $this->alwaysHidePagination,
+            'doc' => $this->document,
         ];
 
         $this->pluginOptions = ArrayHelper::merge($default, $this->pluginOptions);
