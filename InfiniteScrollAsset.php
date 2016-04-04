@@ -1,11 +1,11 @@
 <?php
-namespace darkcs\infinitescroll;
+namespace apexwire\infinitescroll;
 
 use yii\web\AssetBundle;
 
 class InfiniteScrollAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/darkcs/yii2-infinite-scroll/assets';
+    public $sourcePath = '@vendor/apexwire/yii2-infinite-scroll/assets';
     public $js = [
         'jquery.infinitescroll.js',
     ];

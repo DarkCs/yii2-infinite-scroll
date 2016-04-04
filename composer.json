@@ -1,5 +1,5 @@
 {
-  "name": "darkcs/yii2-infinite-scroll",
+  "name": "apexwire/yii2-infinite-scroll",
   "description": "Link pager with infinite scroll support.",
   "type": "yii2-extension",
   "keywords": [
@@ -16,6 +16,10 @@
     {
       "name": "Yuri Plaksunov",
       "email": "darkcs2@gmail.com"
+    },
+    {
+      "name": "ApexWire",
+      "email": "apexwire@gmail.com"
     }
   ],
   "require": {
@@ -23,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "darkcs\\infinitescroll\\": ""
+      "apexwire\\infinitescroll\\": ""
     }
   }
 }
