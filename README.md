@@ -19,7 +19,7 @@ Options
 ##### $bufferPx `40`;
 ##### $pjaxContainer `null`;
 ##### $alwaysHidePagination = `true`;
-##### $container = `['window']`; `window` - loading content on main scrollbar approaching document bottom, `container` - loading content on main scrollbar approaching container bottom, 
+##### $container = `['window']`; `window` - loading content on main scrollbar approaching document bottom, `container` - loading content on container scrollbar approaching container bottom, 
 
 Usage example
 -------------
