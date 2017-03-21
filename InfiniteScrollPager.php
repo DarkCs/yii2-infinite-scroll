@@ -1,6 +1,6 @@
 <?php
 
-namespace darkcs\infinitescroll;
+namespace ivanmfan\infinitescroll;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -47,7 +47,12 @@ class InfiniteScrollPager extends LinkPager
 
     public function run()
     {
-        parent::run();
+        echo LinkPager::widget([
+            'pagination' => $this->pagination,
+            'options' => [
+                'class' => 'pagination hidden'
+            ]
+        ]);
     }
 
     public function initInfiniteScroll()
