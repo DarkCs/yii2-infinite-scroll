@@ -101,7 +101,12 @@
                             }
                         },
                         success: function (text) {
-                            var html = $(text);
+                            var html = document.createElement("div");
+                            html.innerHTML = text;
+                            html = $(html);
+                            object.find(options.item).last().after(html.find(options.item).hide().fadeIn('slow'));
+                            $('script').last().after(html.find('script'));
+
                             object.find(options.item).last().after(html.find(options.item).hide().fadeIn('slow'));
                             $(options.wrapper).find(options.pagination).html(html.find(options.pagination).html());
                             options.state.isLoadingNextPage = false;
